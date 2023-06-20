@@ -5,6 +5,10 @@
     font-family: sans-serif;
 }
 
+/* :root{
+    --clr: #ff2972;
+} */
+
 body{
     display: flex;
     justify-content: center;
@@ -12,8 +16,56 @@ body{
     min-height: 100vh;
     background: #2b2b2b;
 }
+
 #time{
     display: flex;
     gap: 40px;
     color: #fff;
+}
+
+#time .circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time .circle svg{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    /* 270 deg offset puts the beginning of the circle on the top */
+    transform: rotate(270deg);
+}
+
+#time .circle svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke: #191919;
+    stroke-width: 4;
+
+    /* transform to center the around the numbers */
+    transform: translate(5px, 5px);
+}
+
+#time .circle svg circle:nth-child(2){
+    stroke: var(--clr);
+    /* 440 dash is full length, because thats the circumference since 70 is the radius */
+    stroke-dasharray: 440;
+}
+
+#time div{
+    position: absolute;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+#time .ap{
+    position: relative;
+    font-size: 1em;
+    transform: translateX(-20px);
 }
