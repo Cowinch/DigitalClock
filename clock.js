@@ -7,6 +7,10 @@ let hh = document.getElementById("hh");
 let mm = document.getElementById("mm");
 let ss = document.getElementById("ss");
 
+let hr_dot = document.querySelector('.hr_dot');
+let min_dot = document.querySelector('.min_dot');
+let sec_dot = document.querySelector('.sec_dot');
+
 const interval = setInterval(timer, 100);
 function timer() {
     let h = new Date().getHours();
@@ -16,22 +20,28 @@ function timer() {
 
     // console.log("interval")
     //convert between 24hr and 12hr clock
+    //currently, when its 12am the clock reads zero. need to fix that
     if (h > 12) {
         h = h - 12;
     }
+    
 
     //adds a zero so the numbers are always double digit
     h = (h < 10) ? "0" + h : h;
     m = (m < 10) ? "0" + m : m;
     s = (s < 10) ? "0" + s : s;
 
-    hours.innerHTML = h;
-    minutes.innerHTML = m;
-    seconds.innerHTML = s;
+    hours.innerHTML = h + "<br><span>Hours</span>";
+    minutes.innerHTML = m + "<br><span>Minutes</span>";
+    seconds.innerHTML = s + "<br><span>seconds</span>";
     ampm.innerHTML = am;
 
     hh.style.strokeDashoffset = 440 - (440 * h) / 12;
     mm.style.strokeDashoffset = 440 - (440 * m) / 60;
     ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+    hr_dot.style.transform = `rotate(${h * 30}deg)`; //360/12 = 30
+    min_dot.style.transform = `rotate(${m * 6}deg)`;
+    sec_dot.style.transform = `rotate(${s * 6}deg)`;
 }
 
